@@ -7,6 +7,7 @@ const Players = () => {
 
     const [index, setIndex] = useState(0)
     const [players, setPlayers] = useState([])
+    const [readMore, setReadMore] = useState(false)
     const { name, club, position, age, birthLocation, trophiesWon, desc, goals, assists, image } = players[index]
 
 
@@ -19,6 +20,8 @@ const Players = () => {
     useEffect(() => {
         getPlayers()
     }, [])
+
+
 
 
 
@@ -49,6 +52,18 @@ const Players = () => {
         })
     }
 
+    const randomNumber = () => {
+        let randomNumber = Math.floor(Math.random() * players.length)
+        return randomNumber
+    }
+
+    const randomPerson = () => {
+        setIndex(() => {
+            let newIndex = randomNumber()
+            return checkNumber(newIndex)
+        })
+    }
+
 
 
     return (
@@ -56,15 +71,22 @@ const Players = () => {
             <div className="img-container">
                 <img className="person-img" src={image} alt="" />
             </div>
-            <h3>{name}</h3>
-            <h4>Position: {position}</h4>
-            <h4>Club: {club}</h4>
-            <h4>Birth: {birthLocation}</h4>
-            <h4>Age: {age}</h4>
-            <h4>Trophies Won: {trophiesWon}</h4>
-            <h4>Goals: {goals}</h4>
-            <h4>Assists: {assists}</h4>
-            <p className="info">{desc}</p>
+            <div className="info-container">
+                <h3>{name}</h3>
+                <h4>Position: {position}</h4>
+                <h4>Club: {club}</h4>
+                <h4>Born: {birthLocation}</h4>
+                <h4>Age: {age}</h4>
+                <h4>Trophies Won: {trophiesWon}</h4>
+                <h4>Goals: {goals}</h4>
+                <h4 className="assists">Assists: {assists}</h4>
+            </div>
+            <p className="info">
+                {readMore ? desc : `${desc.substring(0, 100)}...`}
+                <button className="random-btn" onClick={() => setReadMore(!readMore)}>{readMore ? 'read more' : 'show less'}</button>
+
+            </p>
+
             <div className="btn-container">
                 <button className="prev-btn" onClick={prevPerson}>
                     <FaChevronLeft />
@@ -73,7 +95,7 @@ const Players = () => {
                     <FaChevronRight />
                 </button>
             </div>
-            <button className="random-btn" >
+            <button className="random-btn" onClick={randomPerson} >
                 Surprise me
         </button>
         </article>
