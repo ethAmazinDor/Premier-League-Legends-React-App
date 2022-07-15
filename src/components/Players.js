@@ -7,8 +7,8 @@ const Players = () => {
 
     const [index, setIndex] = useState(0)
     const [players, setPlayers] = useState([])
-    const [readMore, setReadMore] = useState(false)
-    const { name, club, position, age, birthLocation, trophiesWon, desc, goals, assists, image } = players[index]
+    const [readMore, setReadMore] = useState(true)
+    const { name, club, position, age, birthLocation, trophiesWon, desc, goals, assists, image } = players[index] || {}
 
 
     const getPlayers = async () => {
@@ -20,8 +20,6 @@ const Players = () => {
     useEffect(() => {
         getPlayers()
     }, [])
-
-
 
 
 
@@ -81,9 +79,8 @@ const Players = () => {
                 <h4>Goals: {goals}</h4>
                 <h4 className="assists">Assists: {assists}</h4>
             </div>
-            <p className="info">
-                {readMore ? desc : `${desc.substring(0, 100)}...`}
-                <button className="random-btn" onClick={() => setReadMore(!readMore)}>{readMore ? 'read more' : 'show less'}</button>
+            <p className="info">{readMore ? desc : `${desc.substring(0, 200)}...`}
+                <button className="random-btn-extend" onClick={() => setReadMore(!readMore)}>{readMore ? 'show less' : 'read more'}</button>
 
             </p>
 
