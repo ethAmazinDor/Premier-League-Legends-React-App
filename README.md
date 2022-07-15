@@ -10,3 +10,4 @@ This is a web app mini wiki of the top 10 premier league legends (subjective) th
 - Async/Await functions to fetch data
 
 
+![Screen Shot 2022-07-14 at 8 48 02 PM](https://user-images.githubusercontent.com/97462846/179124721-32837465-4042-4d70-ae19-c1d0139df360.png)
